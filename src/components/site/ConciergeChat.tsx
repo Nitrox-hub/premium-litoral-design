@@ -1,6 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import { useServerFn } from "@tanstack/react-start";
-import { conciergeChat } from "@/lib/concierge.functions";
 
 type Msg = { role: "user" | "assistant"; content: string };
 
@@ -16,7 +14,6 @@ export function ConciergeChat() {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
-  const sendFn = useServerFn(conciergeChat);
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -32,8 +29,16 @@ export function ConciergeChat() {
     setInput("");
     setLoading(true);
     try {
-      const res = await sendFn({ data: { messages: next } });
-      setMessages((m) => [...m, { role: "assistant", content: res.reply }]);
+      const r = await fetch("/api/concierge", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ messages: next }),
+      });
+      const res = await r.json();
+      setMessages((m) => [
+        ...m,
+        { role: "assistant", content: String(res.reply ?? "") },
+      ]);
     } catch (e) {
       console.error(e);
       setMessages((m) => [
@@ -50,12 +55,11 @@ export function ConciergeChat() {
   };
 
   const handoffText = encodeURIComponent(
-    "Olá! Conversei com o concierge no site e gostaria de falar com a equipe."
+    "Olá! Conversei com o concierge no site e gostaria de falar com a equipe.",
   );
 
   return (
     <>
-      {/* Floating button */}
       <button
         aria-label="Abrir concierge"
         onClick={() => setOpen((o) => !o)}
@@ -73,7 +77,6 @@ export function ConciergeChat() {
         </span>
       </button>
 
-      {/* Panel */}
       {open && (
         <div className="fixed bottom-24 right-6 z-50 w-[calc(100vw-3rem)] sm:w-[400px] max-h-[70vh] flex flex-col bg-background rounded-sm shadow-2xl border hairline overflow-hidden">
           <div className="bg-deep text-white px-5 py-4 flex items-start justify-between">
