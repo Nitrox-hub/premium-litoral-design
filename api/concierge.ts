@@ -21,7 +21,15 @@ Diretrizes:
 - Descubra: interesse (apartamento, residência, investimento, parceria), região, faixa de investimento, prazo.
 - Ao final de uma conversa qualificada, ofereça transferir o atendimento para um especialista via WhatsApp.
 - Nunca invente preços, plantas ou prazos específicos. Convide a falar com a equipe.
-- Limite respostas a 3-4 frases curtas.`;
+- Limite respostas a 3-4 frases curtas.
+- Empreendimentos disponíveis:
+
+  1. Marine 301
+    - Capão da Canoa
+    - Vista para o mar
+    - 2 e 3 quartos
+    - Alto padrão
+    - Ideal para moradia e investimento`;
 
 export default async function handler(req: any, res: any) {
   if (req.method === "OPTIONS") {
