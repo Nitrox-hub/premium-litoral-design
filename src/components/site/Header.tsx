@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import logo from "@/assets/logo-almeida.jpeg";
+import logoAsset from "@/assets/logo-almeida-jr.jpg.asset.json";
+const logo = logoAsset.url;
 
 const links = [
   { href: "#empreendimentos", label: "Empreendimentos" },
@@ -31,27 +32,13 @@ export function Header() {
         <a href="#top" className="flex items-center gap-3">
           <img
             src={logo}
-            alt="Almeida Empreendimentos"
-            className="h-10 w-10 rounded-sm object-cover"
-            width={40}
-            height={40}
+            alt="Almeida Jr. Construtora e Incorporadora"
+            className={`h-14 w-auto object-contain ${
+              scrolled ? "mix-blend-multiply invert" : "mix-blend-screen"
+            }`}
+            width={160}
+            height={56}
           />
-          <div className="leading-none">
-            <div
-              className={`font-display text-lg tracking-wide ${
-                scrolled ? "text-foreground" : "text-white"
-              }`}
-            >
-              ALMEIDA
-            </div>
-            <div
-              className={`text-[10px] tracking-[0.3em] uppercase ${
-                scrolled ? "text-muted-foreground" : "text-white/70"
-              }`}
-            >
-              Empreendimentos
-            </div>
-          </div>
         </a>
 
         <nav className="hidden md:flex items-center gap-9">

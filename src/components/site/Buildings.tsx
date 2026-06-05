@@ -1,16 +1,13 @@
 import { useEffect, useState } from "react";
-import marine1 from "@/assets/edificio-marine-1.jpg";
-import marine2 from "@/assets/edificio-marine-2.jpg";
-import horizonte1 from "@/assets/edificio-horizonte-1.jpg";
-import horizonte2 from "@/assets/edificio-horizonte-2.jpg";
-import atlantico1 from "@/assets/edificio-atlantico-1.jpg";
-import atlantico2 from "@/assets/edificio-atlantico-2.jpg";
-import costa1 from "@/assets/edificio-costa-1.jpg";
-import costa2 from "@/assets/edificio-costa-2.jpg";
+import img1 from "@/assets/la-vista-01.png.asset.json";
+import img2 from "@/assets/la-vista-02.png.asset.json";
+import img3 from "@/assets/la-vista-03.png.asset.json";
+import img4 from "@/assets/la-vista-04.png.asset.json";
 
 type Building = {
   id: string;
   name: string;
+  subname: string;
   tag: string;
   location: string;
   description: string;
@@ -19,51 +16,18 @@ type Building = {
 
 const buildings: Building[] = [
   {
-    id: "marine",
-    name: "Edifício Marine",
-    tag: "Residencial · 2026",
-    location: "Capão da Canoa · RS",
-    description:
-      "Linhas contemporâneas, fachada em madeira clara e concreto, varandas amplas com vidros sem caixilhos.",
-    images: [
-      { src: marine1, alt: "Fachada do Edifício Marine" },
-      { src: marine2, alt: "Sala panorâmica do Edifício Marine" },
-    ],
-  },
-  {
-    id: "horizonte",
-    name: "Edifício Horizonte",
-    tag: "Empreendimento · Em desenvolvimento",
-    location: "Litoral Norte · RS",
-    description:
-      "Torre de frente para o mar com jardins verticais, infraestrutura completa de lazer e vista privilegiada.",
-    images: [
-      { src: horizonte1, alt: "Fachada do Edifício Horizonte ao entardecer" },
-      { src: horizonte2, alt: "Piscina infinita do Edifício Horizonte" },
-    ],
-  },
-  {
-    id: "atlantico",
-    name: "Residencial Atlântico",
-    tag: "Alto Padrão · Entregue",
-    location: "Capão da Canoa · RS",
-    description:
-      "Arquitetura sóbria em concreto aparente, integração com paisagismo nativo e lobby de pé-direito duplo.",
-    images: [
-      { src: atlantico1, alt: "Fachada do Residencial Atlântico" },
-      { src: atlantico2, alt: "Lobby do Residencial Atlântico" },
-    ],
-  },
-  {
-    id: "costa",
-    name: "Casa Costa",
-    tag: "Residência exclusiva",
+    id: "la-vista",
+    name: "La Vista",
+    subname: "Xancri-lá",
+    tag: "Residencial · Alto Padrão",
     location: "Xangri-lá · RS",
     description:
-      "Residência beira-mar, dois pavimentos, materiais nobres e suíte master com vista para o oceano.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     images: [
-      { src: costa1, alt: "Fachada da Casa Costa" },
-      { src: costa2, alt: "Suíte master da Casa Costa" },
+      { src: img1.url, alt: "Fachada frontal do Edifício La Vista ao entardecer" },
+      { src: img2.url, alt: "Vista lateral do Edifício La Vista" },
+      { src: img3.url, alt: "Entrada principal do Edifício La Vista" },
+      { src: img4.url, alt: "Perspectiva noturna do Edifício La Vista" },
     ],
   },
 ];
@@ -73,7 +37,6 @@ export function Buildings() {
   const [slide, setSlide] = useState(0);
   const active = buildings.find((b) => b.id === activeId)!;
 
-  // auto-rotate
   useEffect(() => {
     const t = setInterval(() => {
       setSlide((s) => (s + 1) % active.images.length);
@@ -81,7 +44,6 @@ export function Buildings() {
     return () => clearInterval(t);
   }, [active.images.length, activeId]);
 
-  // reset slide when building changes
   useEffect(() => {
     setSlide(0);
   }, [activeId]);
@@ -102,38 +64,38 @@ export function Buildings() {
             </div>
             <h2 className="font-display text-4xl lg:text-5xl leading-[1.1] text-balance">
               Empreendimentos<br />
-              <span className="italic text-accent">Almeida</span>
+              <span className="italic text-accent">Almeida Jr.</span>
             </h2>
           </div>
           <div className="lg:col-span-6 lg:col-start-7 self-end">
             <p className="text-white/70 text-lg leading-relaxed">
-              Selecione um projeto para percorrer suas imagens. Cada
-              empreendimento é assinado pela mesma exigência construtiva.
+              Cada empreendimento é assinado pela mesma exigência construtiva,
+              arquitetura contemporânea e visão patrimonial duradoura.
             </p>
           </div>
         </div>
 
-        {/* Selector */}
-        <div className="flex flex-wrap gap-3 mb-10 border-y border-white/10 py-6">
-          {buildings.map((b) => {
-            const isActive = b.id === activeId;
-            return (
-              <button
-                key={b.id}
-                onClick={() => setActiveId(b.id)}
-                className={`group relative px-5 py-2.5 text-sm tracking-wide rounded-sm transition-all ${
-                  isActive
-                    ? "bg-accent text-accent-foreground"
-                    : "bg-white/5 text-white/80 hover:bg-white/10 border border-white/10"
-                }`}
-              >
-                <span className="font-display tracking-wide">{b.name}</span>
-              </button>
-            );
-          })}
-        </div>
+        {buildings.length > 1 && (
+          <div className="flex flex-wrap gap-3 mb-10 border-y border-white/10 py-6">
+            {buildings.map((b) => {
+              const isActive = b.id === activeId;
+              return (
+                <button
+                  key={b.id}
+                  onClick={() => setActiveId(b.id)}
+                  className={`group relative px-5 py-2.5 text-sm tracking-wide rounded-sm transition-all ${
+                    isActive
+                      ? "bg-accent text-accent-foreground"
+                      : "bg-white/5 text-white/80 hover:bg-white/10 border border-white/10"
+                  }`}
+                >
+                  <span className="font-display tracking-wide">{b.name}</span>
+                </button>
+              );
+            })}
+          </div>
+        )}
 
-        {/* Album */}
         <div className="grid lg:grid-cols-12 gap-10 items-start">
           <div className="lg:col-span-8 relative aspect-[16/10] overflow-hidden rounded-sm bg-black">
             {active.images.map((img, i) => (
@@ -155,7 +117,12 @@ export function Buildings() {
                 <div className="text-[10px] tracking-[0.3em] uppercase text-white/70">
                   {active.tag}
                 </div>
-                <div className="font-display text-2xl mt-1">{active.name}</div>
+                <div className="font-display text-2xl mt-1">
+                  {active.name}{" "}
+                  <span className="text-white/70 text-lg font-light italic">
+                    · {active.subname}
+                  </span>
+                </div>
               </div>
               <div className="flex gap-2">
                 {active.images.map((_, i) => (
@@ -176,12 +143,15 @@ export function Buildings() {
             <div className="text-[10px] tracking-[0.3em] uppercase text-accent mb-3">
               {active.location}
             </div>
-            <h3 className="font-display text-3xl mb-5">{active.name}</h3>
+            <h3 className="font-display text-3xl mb-1">{active.name}</h3>
+            <div className="text-sm tracking-[0.2em] uppercase text-white/60 mb-5">
+              {active.subname}
+            </div>
             <p className="text-white/75 leading-relaxed mb-8">
               {active.description}
             </p>
             <a
-              href="https://wa.me/5551998208735?text=Ol%C3%A1%2C%20gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20o%20empreendimento."
+              href="https://wa.me/5551998208735?text=Ol%C3%A1%2C%20gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20o%20La%20Vista."
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-3 border border-white/30 px-6 py-3 text-sm rounded-sm hover:bg-accent hover:border-accent hover:text-accent-foreground transition-colors"
