@@ -1,4 +1,5 @@
-import logo from "@/assets/logo-almeida.jpeg";
+import logoAsset from "@/assets/logo-almeida-jr.jpg.asset.json";
+const logo = logoAsset.url;
 
 export function Footer() {
   return (
