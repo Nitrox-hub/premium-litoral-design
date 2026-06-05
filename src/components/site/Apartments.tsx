@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import sala from "@/assets/apartamento-1-sala.jpg";
-import quarto from "@/assets/apartamento-1-quarto.jpg";
-import cozinha from "@/assets/apartamento-1-cozinha.jpg";
+import img1 from "@/assets/la-vista-01.png.asset.json";
+import img2 from "@/assets/la-vista-02.png.asset.json";
+import img3 from "@/assets/la-vista-03.png.asset.json";
+import img4 from "@/assets/la-vista-04.png.asset.json";
 
 type Apartment = {
   id: string;
@@ -15,17 +16,18 @@ type Apartment = {
 
 const apartments: Apartment[] = [
   {
-    id: "marine-301",
-    name: "Marine 301",
-    tag: "Venda e Locação · 3 suítes",
-    location: "Capão da Canoa · RS",
+    id: "la-vista-residence",
+    name: "La Vista Residence",
+    tag: "Venda e Locação · Alto Padrão",
+    location: "Xangri-lá · RS",
     description:
-      "Apartamento de alto padrão com vista para o mar, living integrado, cozinha gourmet e suíte master com varanda panorâmica.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     url: "https://almeidaempreendimentos.com.br",
     images: [
-      { src: sala, alt: "Living do apartamento Marine 301" },
-      { src: quarto, alt: "Suíte master do apartamento Marine 301" },
-      { src: cozinha, alt: "Cozinha gourmet do apartamento Marine 301" },
+      { src: img1.url, alt: "Fachada do La Vista Residence" },
+      { src: img2.url, alt: "Vista lateral do La Vista Residence" },
+      { src: img3.url, alt: "Entrada do La Vista Residence" },
+      { src: img4.url, alt: "Perspectiva noturna do La Vista Residence" },
     ],
   },
 ];

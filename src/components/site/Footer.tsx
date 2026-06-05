@@ -8,13 +8,7 @@ export function Footer() {
         <div className="grid md:grid-cols-12 gap-10">
           <div className="md:col-span-5">
             <div className="flex items-center gap-3 mb-5">
-              <img src={logo} alt="" className="h-12 w-12 rounded-sm object-cover" />
-              <div>
-                <div className="font-display text-xl tracking-wide">ALMEIDA</div>
-                <div className="text-[10px] tracking-[0.3em] uppercase text-white/60">
-                  Empreendimentos
-                </div>
-              </div>
+              <img src={logo} alt="Almeida Jr." className="h-14 w-auto object-contain mix-blend-screen" />
             </div>
             <p className="text-white/70 max-w-sm leading-relaxed">
               Arquitetura, solidez e valorização no litoral norte gaúcho.

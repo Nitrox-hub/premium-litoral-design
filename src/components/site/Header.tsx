@@ -33,12 +33,11 @@ export function Header() {
           <img
             src={logo}
             alt="Almeida Jr. Construtora e Incorporadora"
-            className={`h-12 w-auto object-contain transition-all ${
-              scrolled ? "" : "brightness-0 invert"
+            className={`h-14 w-auto object-contain ${
+              scrolled ? "mix-blend-multiply invert" : "mix-blend-screen"
             }`}
-            style={scrolled ? { filter: "invert(1)" } : undefined}
-            width={140}
-            height={48}
+            width={160}
+            height={56}
           />
         </a>
 
