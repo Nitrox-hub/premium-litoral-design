@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import img1 from "@/assets/la-vista-01.png.asset.json";
-import img2 from "@/assets/la-vista-02.png.asset.json";
-import img3 from "@/assets/la-vista-03.png.asset.json";
-import img4 from "@/assets/la-vista-04.png.asset.json";
+
+const img1 = { url: "/La_vista/foto_1.png" };
+const img2 = { url: "/La_vista/foto_2.png" };
+const img3 = { url: "/La_vista/foto_3.png" };
+const img4 = { url: "/La_vista/foto_4.png" };
 
 type Building = {
   id: string;
